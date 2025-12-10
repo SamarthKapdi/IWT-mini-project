@@ -2,16 +2,25 @@
 session_start();
 
 // Basic MySQL configuration (adjust if needed)
+function envOr(string $key, string $default=''): string {
+  $v = getenv($key);
+  return ($v === false || $v === '') ? $default : $v;
+}
+
 $cfg = [
-    'db'        => 'iwt_suite',
-    'app_user'  => 'samarth',
-    'app_pass'  => 'Sam@123',
-    'root_user' => 'root',
-    'root_pass' => '',
-    'host'      => '127.0.0.1',
+  'db'        => envOr('DB_NAME', 'iwt_suite'),
+  'app_user'  => envOr('DB_USER', 'samarth'),
+  'app_pass'  => envOr('DB_PASS', 'Sam@123'),
+  'root_user' => envOr('DB_ROOT_USER', 'root'),
+  'root_pass' => envOr('DB_ROOT_PASS', ''),
+  'host'      => envOr('DB_HOST', '127.0.0.1'),
 ];
 
 function bootstrapDb(array $c): void {
+  if ($c['root_user'] === '') {
+    // skip bootstrapping when root credentials are not provided (common on hosted MySQL)
+    return;
+  }
     try {
         $root = new PDO("mysql:host={$c['host']};charset=utf8mb4", $c['root_user'], $c['root_pass'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
