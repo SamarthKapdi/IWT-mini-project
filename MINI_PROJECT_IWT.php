@@ -14,6 +14,7 @@ $cfg = [
   'root_user' => envOr('DB_ROOT_USER', 'root'),
   'root_pass' => envOr('DB_ROOT_PASS', ''),
   'host'      => envOr('DB_HOST', '127.0.0.1'),
+  'port'      => envOr('DB_PORT', ''),
 ];
 
 function bootstrapDb(array $c): void {
@@ -22,7 +23,8 @@ function bootstrapDb(array $c): void {
     return;
   }
     try {
-        $root = new PDO("mysql:host={$c['host']};charset=utf8mb4", $c['root_user'], $c['root_pass'], [
+        $portPart = $c['port'] !== '' ? ";port={$c['port']}" : '';
+        $root = new PDO("mysql:host={$c['host']}{$portPart};charset=utf8mb4", $c['root_user'], $c['root_pass'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ]);
         $root->exec("CREATE DATABASE IF NOT EXISTS `{$c['db']}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
@@ -38,13 +40,17 @@ function bootstrapDb(array $c): void {
 
 function connectApp(array $c): PDO {
     try {
-        return new PDO("mysql:host={$c['host']};dbname={$c['db']};charset=utf8mb4", $c['app_user'], $c['app_pass'], [
+    $portPart = $c['port'] !== '' ? ";port={$c['port']}" : '';
+    $dsn = "mysql:host={$c['host']}{$portPart};dbname={$c['db']};charset=utf8mb4";
+    return new PDO($dsn, $c['app_user'], $c['app_pass'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
     } catch (Throwable $e) {
         bootstrapDb($c);
-        return new PDO("mysql:host={$c['host']};dbname={$c['db']};charset=utf8mb4", $c['app_user'], $c['app_pass'], [
+    $portPart = $c['port'] !== '' ? ";port={$c['port']}" : '';
+    $dsn = "mysql:host={$c['host']}{$portPart};dbname={$c['db']};charset=utf8mb4";
+    return new PDO($dsn, $c['app_user'], $c['app_pass'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
