@@ -1,40 +1,50 @@
-Smart Student Toolkit
-A single-file PHP full-stack lab that bundles user auth, dashboards, database inserts, calculators, converters, task boards, and more—designed for lightweight hosting (InfinityFree-ready) and quick demos of IWT concepts.
+## Smart Student Toolkit
 
-Live Demo
-App URL: https://samarthkapdi.infinityfreeapp.com/?view=dashboard
-Demo Accounts
-samarth / 11111111
-rohit / 11111111
-Feature Highlights
-Auth & Session Flow: Secure signup/login with password hashing, session tracking, and quick logout.
-Dashboard & Stats: Live counters for database rows, activity logs, calculator history, plus a real-time clock widget.
-Database Utilities: Insert “people” records directly from the UI; recent rows display instantly.
-Productivity Tools:
-Scientific-style calculator with saved history
-Client-side registration validator
-Event logging lab (click, double-click, context menu, input tracking)
-Hobby board & weekday helper, backed by localStorage
-Multi-purpose converters (currency, temperature, weight, length)
-Task board with priorities, status toggles, and persistence
-Contributors Section: Quick LinkedIn links for Samarth Kapdi and Rohit Rajure.
-Theme Toggle: Sticky navbar with dark/light theme support and localStorage persistence.
-Auto DB Bootstrapping: On first load the script creates required tables (users, people, activities, calc_history) using PDO.
-Tech Stack
-PHP 8+, PDO, MySQL
-HTML5/CSS3 with custom styling (no external frameworks)
-Vanilla JavaScript throughout (ES6)
-Local Setup
-Clone the repo and place files under your PHP server root.
-Copy MINI_PROJECT_IWT.php as-is (it includes both backend and frontend).
-Provide MySQL credentials via $cfg (already set for the hosted demo; adjust for local runs).
-Load the page—tables auto-create if they don’t exist.
-Use the demo login or create new accounts via the signup tab.
-Deployment Notes
-Built to run on shared hosts like InfinityFree; no Composer or extra build steps required.
-Uses a single entry point for easy FTP uploads.
-Remember to rotate DB credentials if you publish the repo publicly.
-Credits
-Samarth Kapdi – Lead Developer (https://samarthkapdi.github.io/MyPortfolioWebsite/)
-Rohit Rajure – Co-Developer (https://rohitrajure.github.io/Portfolio-Rohit-Rajure/)
-Let me know if you’d like this saved into README.md or tailored further (screenshots, badges, deployment instructions, etc.).
+Smart Student Toolkit is a single-file PHP full-stack lab that bundles authentication, dashboards, calculators, converters, and productivity widgets. It is optimized for lightweight hosting (InfinityFree-ready) and showcases Internet & Web Technology (IWT) concepts end-to-end.
+
+### Live Demo
+
+- **URL:** https://samarthkapdi.infinityfreeapp.com/?view=dashboard
+- **Demo Accounts:**
+	- `samarth` / `11111111`
+	- `rohit` / `11111111`
+
+### Features
+
+- **Authentication & Sessions:** Signup/login with password hashing, session handling, and logout flow.
+- **Dashboard & Stats:** Live counts for database rows, activity log, calculator history, plus a real-time clock widget.
+- **Database Utilities:** Add "people" entries from the UI, auto-refreshing the latest rows.
+- **Productivity Tools:**
+	- Scientific-style calculator with expression history.
+	- Client-side registration validator.
+	- Event lab tracking clicks, double-clicks, context menus, and text input.
+	- Hobby board (localStorage), weekday helper, and converters (currency, temperature, weight, length).
+	- Task board with priorities, toggle, delete, and clear actions backed by localStorage.
+- **Contributors Tab:** Quick LinkedIn links for Samarth Kapdi and Rohit Rajure.
+- **Theme Toggle:** Sticky navbar with dark/light support and persistence.
+- **Auto DB Bootstrapping:** Creates `users`, `people`, `activities`, and `calc_history` tables on first load using PDO.
+
+### Tech Stack
+
+- PHP 8+, PDO, MySQL
+- HTML5/CSS3 (custom design, no framework)
+- Vanilla JavaScript (ES6)
+
+### Local Setup
+
+1. Clone/download the repo into your PHP server root.
+2. Ensure `MINI_PROJECT_IWT.php` is accessible via the server (it contains backend + frontend).
+3. Update the `$cfg` credentials if running locally; leave as-is for the hosted demo.
+4. Load the page—tables auto-create if absent.
+5. Use the demo accounts or register new users.
+
+### Deployment Tips
+
+- Ideal for shared hosts (InfinityFree, 000webhost, etc.); no Composer or build steps required.
+- Keep DB credentials private when publishing the repository.
+- For other hosts, switch `$cfg` to environment-driven config if needed.
+
+### Credits
+
+- **Samarth Kapdi** – Lead Developer (https://www.linkedin.com/in/samarthkapdi, https://samarthkapdi.github.io/MyPortfolioWebsite/)
+- **Rohit Rajure** – Co-Developer (https://www.linkedin.com/in/rohit-rajure-bb9508302, https://rohitrajure.github.io/Portfolio-Rohit-Rajure/)
